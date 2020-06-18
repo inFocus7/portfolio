@@ -1,41 +1,172 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
+import React, { FunctionComponent } from "react";
+import ThemeContext from "../context/theme-context";
+import { createGlobalStyle } from "styled-components";
+import Header from "../components/Header";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
 
-type Props = {
-  children?: ReactNode
-  title?: string
+type Layout = {
+  children: JSX.Element | JSX.Element[];
+};
+
+const client = new ApolloClient({
+  uri: "https://intense-ravine-82013.herokuapp.com/api/graphql",
+});
+
+const GlobalStyle = createGlobalStyle`
+* {
+  font-size: 7px;
 }
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div>
-    <Head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    </Head>
-    <header>
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{' '}
-        | <a href="/api/users">Users API</a>
-      </nav>
-    </header>
-    {children}
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
-  </div>
-)
+@media (min-width: 480px) {
+  * {
+    font-size: 8px;
+  }
+}
 
-export default Layout
+@media (min-width: 600px) {
+  * {
+    font-size: 9px;
+  }
+}
+
+@media (min-width: 900px) {
+  * {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 1200px) {
+  * {
+    font-size: 11px;
+  }
+}
+
+body {
+  background-color: ${(props: { theme: { background: String; }; }) => props.theme.background};
+  color: ${(props: { theme: { text: { primary: String; }; }; }) => props.theme.text.primary};
+  font-family: "Raleway", "Open Sans", sans-serif;
+}
+
+a {
+  color: ${(props: { theme: { text: { secondary: String; }; }; }) => props.theme.text.secondary};
+  text-decoration: none;
+
+  :hover {
+    color: ${(props: { theme: { text: { primary: String; }; }; }) => props.theme.text.primary};
+
+  }
+}
+
+  h1 {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 8.5em;
+    letter-spacing: 0.02em;
+    margin: 0;
+    color: ${(props: { theme: { text: { secondary: String; }; }; }) => props.theme.text.secondary};
+    white-space: nowrap;
+
+
+  }
+
+  h2 {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3.1em;
+    margin: 0;
+    color: ${(props: { theme: { shades: { primary: String; }; }; }) => props.theme.shades.primary};
+    display: flex;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  h3 {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.8em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    color: ${(props: { theme: { text: { primary: String; }; }; }) => props.theme.text.primary};
+    white-space: nowrap;
+
+  }
+
+  h4 {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 3.5em;
+    margin: 0;
+    color: ${(props: { theme: { text: { secondary: String; }; }; }) => props.theme.text.secondary};
+    white-space: nowrap;
+
+  }
+
+  h5 {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 5em;
+    margin: 0;
+    color: ${(props: { theme: { text: { secondary: String; }; }; }) => props.theme.text.secondary};
+    white-space: nowrap;
+  }
+
+  h6 {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 3.2em;
+    margin: 0;
+    color: ${(props: { theme: { accent: { secondary: String; }; }; }) => props.theme.accent.secondary};
+    white-space: nowrap;
+  }
+
+  p {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.4em;
+    margin: 0;
+    color: ${(props: { theme: { text: { secondary: String; }; }; }) => props.theme.text.secondary};
+  }
+`;
+const Layout: FunctionComponent<Layout> = ({ children }) => {
+  return (
+    <ApolloProvider client={client}>
+      <ThemeContext.Consumer>
+        {(value) => (
+          <>
+            <GlobalStyle theme={value} />
+
+            <div>
+              <Header />
+              <div
+                style={{
+                  margin: `0 auto`,
+                  maxWidth: 1200,
+                  padding: `0 1.0875rem 1.45rem`,
+                }}
+              >
+                <main>{children}</main>
+                <footer>
+                  © {new Date().getFullYear()}, Built with ❤️ by Fabian Gonzalez
+                  .
+                </footer>
+              </div>
+            </div>
+          </>
+        )}
+      </ThemeContext.Consumer>
+    </ApolloProvider>
+  );
+};
+
+export default Layout;

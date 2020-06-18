@@ -1,14 +1,18 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import React from "react"
+import Hero from "../components/sections/Hero"
+import About from "../components/sections/About"
+import Work from "../components/sections/Work"
+import Projects from "../components/sections/Projects"
+import Fun from "../components/sections/Fun"
+import Layout from "../components/Layout"
 
 const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
+  <Layout>
+      <Hero/>
+      <About/>
+      <Work/>
+      <Projects/>
+      <Fun/>
   </Layout>
 )
 
