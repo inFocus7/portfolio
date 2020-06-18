@@ -1,6 +1,7 @@
 {
-  "name": "with-typescript",
+  "name": "portfolio",
   "version": "1.0.0",
+  "author": "Fabian Gonzalez",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -36,5 +37,8 @@
     "typescript": "3.7.3",
     "url-loader": "^4.1.0"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": "12.x"
+  }
 }

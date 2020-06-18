@@ -4,7 +4,7 @@ import { AppIcon } from "../functions/globalFunctions";
 import ThemeContext from "../context/theme-context";
 import styles from "./styles/header";
 import { useDocumentScrollThrottled } from "../functions/globalFunctions";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 
 /**
  * The header navigation component containing scrolling implementation.
