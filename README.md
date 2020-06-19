@@ -1,10 +1,14 @@
 # Portfolio 👀
 
+#### [fabianswe.com](https://www.fabianswe.com)
+
  My portfolio's front end utilizing [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), [React](http://reactjs.org/), and [Apollo](http://apollographql.com/) Client. It makes query calls to my backend [GraphQL](http://graphql.org/) API to display information.
 
 ## TODO
 
-* Add favicon.
+* Add fallback/err. handling when stack technology not found in mappers.
+* Make switching projects faster. (Or at least have `isLoading` in between switches to provide feedback)
+* Make `duration` from `scroll-link`s in `Header.tsx` speed dependant on screen height. The current duration speed (500) could seem laggish on smaller devices.
 * Import/look into the necessary Google Fonts (ex. Google font for `<h2>`)
 * Modify for mobile displays. 📱
 * Look into SEOs for SPAs 🤓
