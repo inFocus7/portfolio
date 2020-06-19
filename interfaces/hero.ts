@@ -7,3 +7,7 @@ export type HeroData = {
     link: string;
   }[];
 };
+
+export type HeroProps = {
+  
+}

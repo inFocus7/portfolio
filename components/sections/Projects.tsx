@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import SectionHeader from "../SectionHeader";
 import { ShowcaseProjects } from "../Showcase";
 import { View } from "../styles";
-import { ProjectData } from "../../interfaces/project";
+import { ProjectData, ProjectProps } from "../../interfaces/project";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 
@@ -42,10 +42,11 @@ const GET_PROJECTS = gql`
   }
 `;
 
-const Projects: FunctionComponent = () => {
+const Projects: FunctionComponent<ProjectProps> = ({}) => {
   const { data, loading, error } = useQuery(GET_PROJECTS);
-  if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
+
+  if (loading) return <h2>Loading Projects...</h2>;
+  if (error) return <h2>{`Error! ${error.message}`}</h2>;
 
   const info: ProjectData[] = data.projects;
   return (

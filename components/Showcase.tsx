@@ -103,7 +103,6 @@ const Nav: FunctionComponent<NavType> = ({
   const {
     HorizontalNavList,
     Item,
-    Line,
     SelectedContent,
     UnselectedContent,
   } = { ...styles };

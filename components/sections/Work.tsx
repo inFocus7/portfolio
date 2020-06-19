@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import SectionHeader from "../SectionHeader";
 import { ShowcaseWork } from "../Showcase";
 import { View } from "../styles";
-import { WorkData } from "../../interfaces/work";
+import { WorkData, WorkProps } from "../../interfaces/work";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 
@@ -22,12 +22,13 @@ const GET_WORK = gql`
     }
   }
 `;
-const Work: FunctionComponent = (props) => {
+const Work: FunctionComponent<WorkProps> = ({}) => {
   const { loading, error, data } = useQuery(GET_WORK);
-  if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
 
-  const info = data.work;
+  if (loading) return <h2>Loading Work Experience...</h2>;
+  if (error) return <h2>{`Error! ${error.message}`}</h2>;
+
+  const info: WorkData[] = data.work;
   return (
     <section id="work">
       <View>

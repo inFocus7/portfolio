@@ -4,10 +4,15 @@ import { createGlobalStyle } from "styled-components";
 import Header from "../components/Header";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
+import {Stylized} from "../interfaces/index"
+
+// TODO Add loading splash screen
 
 type Layout = {
   children: JSX.Element | JSX.Element[];
 };
+
+
 
 const client = new ApolloClient({
   uri: "https://intense-ravine-82013.herokuapp.com/api/graphql",
@@ -43,17 +48,17 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  background-color: ${(props: { theme: { background: String; }; }) => props.theme.background};
-  color: ${(props: { theme: { text: { primary: String; }; }; }) => props.theme.text.primary};
+  background-color: ${(props: Stylized) => props.theme.background};
+  color: ${(props: Stylized) => props.theme.text.primary};
   font-family: "Raleway", "Open Sans", sans-serif;
 }
 
 a {
-  color: ${(props: { theme: { text: { secondary: String; }; }; }) => props.theme.text.secondary};
+  color: ${(props: Stylized) => props.theme.text.secondary};
   text-decoration: none;
 
   :hover {
-    color: ${(props: { theme: { text: { primary: String; }; }; }) => props.theme.text.primary};
+    color: ${(props: Stylized) => props.theme.text.primary};
 
   }
 }
@@ -65,7 +70,7 @@ a {
     font-size: 8.5em;
     letter-spacing: 0.02em;
     margin: 0;
-    color: ${(props: { theme: { text: { secondary: String; }; }; }) => props.theme.text.secondary};
+    color: ${(props: Stylized) => props.theme.text.secondary};
     white-space: nowrap;
 
 
@@ -77,7 +82,7 @@ a {
     font-weight: 600;
     font-size: 3.1em;
     margin: 0;
-    color: ${(props: { theme: { shades: { primary: String; }; }; }) => props.theme.shades.primary};
+    color: ${(props: Stylized) => props.theme.shades.primary};
     display: flex;
     align-items: center;
     text-align: center;
@@ -93,7 +98,7 @@ a {
     display: flex;
     align-items: center;
     text-transform: capitalize;
-    color: ${(props: { theme: { text: { primary: String; }; }; }) => props.theme.text.primary};
+    color: ${(props: Stylized) => props.theme.text.primary};
     white-space: nowrap;
 
   }
@@ -104,7 +109,7 @@ a {
     font-weight: 500;
     font-size: 3.5em;
     margin: 0;
-    color: ${(props: { theme: { text: { secondary: String; }; }; }) => props.theme.text.secondary};
+    color: ${(props: Stylized) => props.theme.text.secondary};
     white-space: nowrap;
 
   }
@@ -115,7 +120,7 @@ a {
     font-weight: normal;
     font-size: 5em;
     margin: 0;
-    color: ${(props: { theme: { text: { secondary: String; }; }; }) => props.theme.text.secondary};
+    color: ${(props: Stylized) => props.theme.text.secondary};
     white-space: nowrap;
   }
 
@@ -125,7 +130,7 @@ a {
     font-weight: normal;
     font-size: 3.2em;
     margin: 0;
-    color: ${(props: { theme: { accent: { secondary: String; }; }; }) => props.theme.accent.secondary};
+    color: ${(props: Stylized) => props.theme.accent.secondary};
     white-space: nowrap;
   }
 
@@ -135,7 +140,7 @@ a {
     font-weight: 500;
     font-size: 2.4em;
     margin: 0;
-    color: ${(props: { theme: { text: { secondary: String; }; }; }) => props.theme.text.secondary};
+    color: ${(props: Stylized) => props.theme.text.secondary};
   }
 `;
 const Layout: FunctionComponent<Layout> = ({ children }) => {

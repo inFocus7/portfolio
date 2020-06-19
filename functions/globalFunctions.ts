@@ -66,9 +66,10 @@ import ntUrl, {
 import wUrl, {
   ReactComponent as Website,
 } from "../public/images/outIcos/icons8-website-35px.svg";
+import { objectImgType } from "../interfaces";
 // import {stackToImageType, companyToImageType, emojiMatcherType, objectImgType} from "../interfaces/index"
 
-export const companyToImage = {
+export const companyToImage: {[key: string]: [string, React.FunctionComponent<React.SVGAttributes<SVGElement>>]} = {
   GitHub: [ghUrl, GitHub],
   LinkedIn: [liUrl, LinkedIn],
   Email: [eUrl, Email],
@@ -79,12 +80,12 @@ export const companyToImage = {
  * Reformats data into the object I'm using.
  *
  * @param {string} url
- * @param {Function} icon (React Component svg for icon)
+ * @param {React.FunctionComponent<React.SVGAttributes<SVGElement>>} icon (React Component svg for icon)
  * @param {string} background
  * @param {string} foreground
  * @returns
  */
-const objectImg = (url, icon, background, foreground) => {
+const objectImg = (url: string, icon: React.FunctionComponent<React.SVGAttributes<SVGElement>>, background: string, foreground: string) => {
   return {
     url: url,
     icon: icon,
@@ -93,7 +94,7 @@ const objectImg = (url, icon, background, foreground) => {
   };
 };
 
-export const stackToImage = {
+export const stackToImage: {[key: string]: objectImgType} = {
   React: objectImg(rUrl, ReactIcon, "#61DBFB", "#020302"),
   "C++": objectImg(cUrl, Cpp, "#00599B", "#FFFFFF"),
   JavaScript: objectImg(jsUrl, JavaScript, "#F0DB4F", "#323330"),
@@ -116,7 +117,7 @@ export const stackToImage = {
   Website: objectImg(wUrl, Website, "", ""),
 };
 
-export const emojiMatcher = {
+export const emojiMatcher: {[key: string]: string} = {
   music: "🎵",
   movies: "🎥",
   tv: "📺",
@@ -125,7 +126,7 @@ export const emojiMatcher = {
 
 export const AppIcon = { url: iUrl, icon: Icon };
 
-export function useDocumentScrollThrottled(callback) {
+export function useDocumentScrollThrottled(callback: Function) {
   const [, setScrollPosition] = React.useState(0);
   let prevScrollTop = 0;
 

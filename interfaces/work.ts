@@ -10,3 +10,7 @@ export type WorkData = {
   points: string[];
   stack: string[];
 };
+
+export type WorkProps = {
+  
+}

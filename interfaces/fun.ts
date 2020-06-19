@@ -3,3 +3,7 @@ export type FunData = {
   content: string;
   link?: string;
 };
+
+export type FunProps = {
+  
+}

@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import {BadgeType, StylizedBadgeType} from "../../interfaces/index"
 
 export const Badge = styled.div`
   background: rgba(231, 218, 223, 0.05);
@@ -6,7 +7,7 @@ export const Badge = styled.div`
   width: fit-content;
   /* Dark / Secondary Text */
 
-  border: 1.5px solid ${props => props.theme.text.secondary};
+  border: 1.5px solid ${(props: BadgeType) => props.theme.text.secondary};
   box-sizing: content-box;
   border-radius: 3px;
   overflow: hidden;
@@ -24,7 +25,7 @@ export const Badge = styled.div`
     content: "";
     /* TODO Parallax background w/ bounds so it's always in view (therefore, small amt of parallax). */
     /* background-attachment: fixed; */
-    background-image: url(${props => props.img});
+    background-image: url(${(props: BadgeType) => props.img});
     background-position: left;
     background-repeat: no-repeat;
     position: absolute;
@@ -40,7 +41,7 @@ export const Badge = styled.div`
   p {
     font-weight: 600;
     font-size: 2.7em;
-    color: ${props => props.theme.text.primary};
+    color: ${(props: BadgeType) => props.theme.text.primary};
     float: right;
     text-align: center;
     vertical-align: middle;
@@ -67,7 +68,7 @@ export const StylizedBadge = styled.div`
   vertical-align: middle;
   margin: .4em .8em .5em 0px;
   position: relative;
-  background-color: ${props => props.background};
+  background-color: ${(props: StylizedBadgeType) => props.background};
 
   :hover {
     cursor: default;
@@ -76,7 +77,7 @@ export const StylizedBadge = styled.div`
   p {
     font-weight: 700;
     font-size: 2.3em;
-    color: ${props => props.foreground};
+    color: ${(props: StylizedBadgeType) => props.foreground};
     float: right;
     text-align: center;
     vertical-align: middle;

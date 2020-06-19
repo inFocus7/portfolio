@@ -1,3 +1,5 @@
+import ThemeContext from "../context/theme-context"
+
 export type SectionHeaderType = {
   num: number;
   title: string;
@@ -11,10 +13,10 @@ export type emojiMatcherType = {
 };
 
 export type companyToImageType = {
-  GitHub: [string, Function];
-  LinkedIn: [string, Function];
-  Email: [string, Function];
-  Twitter: [string, Function];
+  GitHub: [string, React.FunctionComponent<React.SVGAttributes<SVGElement>>];
+  LinkedIn: [string, React.FunctionComponent<React.SVGAttributes<SVGElement>>];
+  Email: [string, React.FunctionComponent<React.SVGAttributes<SVGElement>>];
+  Twitter: [string, React.FunctionComponent<React.SVGAttributes<SVGElement>>];
 };
 
 export type stackToImageType = {
@@ -42,7 +44,20 @@ export type stackToImageType = {
 
 export type objectImgType = {
   url: string;
-  icon: Function;
+  icon: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
   background: string;
   foreground: string;
 };
+
+export interface Stylized {
+  theme: ThemeContext;
+};
+
+export interface BadgeType extends Stylized {
+  img: string;
+}
+
+export interface StylizedBadgeType extends BadgeType {
+  background: string;
+  foreground: string;
+}

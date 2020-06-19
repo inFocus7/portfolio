@@ -5,7 +5,7 @@ import Aos from "aos";
 import Typical from "react-typical";
 import { Center, HorizontalList } from "../styles";
 import styles from "../styles/hero";
-import {HeroData} from "../../interfaces/hero"
+import {HeroData, HeroProps} from "../../interfaces/hero"
 import gql from 'graphql-tag'
 import {useQuery} from "@apollo/react-hooks"
 
@@ -23,7 +23,7 @@ const GET_MAIN = gql`
 }
 `;
 
-const Hero: FunctionComponent = () => {
+const Hero: FunctionComponent<HeroProps> = ({}) => {
   const { HeroView } = { ...styles };
   // let info: HeroData = React.useContext(DataContext).main[0];
   const theme: ThemeContext = React.useContext(ThemeContext);
@@ -36,10 +36,10 @@ const Hero: FunctionComponent = () => {
     // }
   }, []);
 
-  if(loading) return 'Loading...';
-  if(error) return `Error! ${error.message}`;
+  if (loading) return <h2>Loading Main Information...</h2>;
+  if (error) return <h2>{`Error! ${error.message}`}</h2>;
 
-  const info = data.main;
+  const info: HeroData = data.main;
 
   let titleSteps: any[] = info.titles;
   for (let i = 0; i < info.titles.length; i += 2) {
@@ -74,8 +74,7 @@ const Hero: FunctionComponent = () => {
           <Center>
             <HorizontalList data-aos="fade-up">
               {info.contacts && info.contacts.map((val) => {
-              const img = companyToImage[val.name];
-              const url = img[0], SvgComponent = img[1];
+              const SvgComponent = companyToImage[val.name][1];
 
                 return (
                   <li key={val.name}>

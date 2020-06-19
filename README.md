@@ -4,6 +4,14 @@
 
 ## TODO
 
+* Add favicon.
+* Import/look into the necessary Google Fonts (ex. Google font for `<h2>`)
 * Modify for mobile displays. 📱
+* Look into SEOs for SPAs 🤓
 * Design it with the intention of "fun"! 😄
-* Add blog post section.
+* Add blog post section. 📄
+* Decrease First Load JS (**226 kB** as of 6.18.2020) 🐌
+  * SVGs: Remove, minimize, or host online.
+  * Remove some 3rd party components.
+    * Manual `react-typical` implementation.
+* `<span>` some aos-ed components to not mess with page width. (ex. `StylizedBadge`)
