@@ -72,8 +72,6 @@ a {
     margin: 0;
     color: ${(props: Stylized) => props.theme.text.secondary};
     white-space: nowrap;
-
-
   }
 
   h2 {

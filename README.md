@@ -6,7 +6,7 @@
 
 ## TODO
 
-* Add fallback/err. handling when stack technology not found in mappers.
+* Better loading. (animation vs. splash screen)
 * Make switching projects faster. (Or at least have `isLoading` in between switches to provide feedback)
 * Make `duration` from `scroll-link`s in `Header.tsx` speed dependant on screen height. The current duration speed (500) could seem laggish on smaller devices.
 * Import/look into the necessary Google Fonts (ex. Google font for `<h2>`)

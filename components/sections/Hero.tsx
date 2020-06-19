@@ -74,7 +74,8 @@ const Hero: FunctionComponent<HeroProps> = ({}) => {
           <Center>
             <HorizontalList data-aos="fade-up">
               {info.contacts && info.contacts.map((val) => {
-              const SvgComponent = companyToImage[val.name][1];
+              const company = companyToImage[val.name];
+              const SvgComponent = company ? company[1] : null;
 
                 return (
                   <li key={val.name}>
@@ -83,11 +84,11 @@ const Hero: FunctionComponent<HeroProps> = ({}) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <SvgComponent
+                      {SvgComponent ? (<SvgComponent
                         fill={theme.text.secondary}
                         width="25px"
                         height="55px"
-                      />
+                      />) : (<h4 style={{fontSize: "1.6em"}}>{`<${val.name}>`}</h4>)}
                     </a>
                   </li>
                 );

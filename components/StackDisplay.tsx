@@ -5,9 +5,7 @@ import Aos from "aos";
 import styles from "./styles/stack-display";
 import { StackGrid } from "./styles/about";
 import { StackDisplayType, StylizedStackType } from "../interfaces/showcase";
-
-// TODO "If not exists/found in stackToImage()..."
-
+import { objectImgType } from "../interfaces/index";
 /**
  *
  *
@@ -20,7 +18,10 @@ const StackDisplay: FunctionComponent<StackDisplayType> = ({
   isStylized = false,
 }) => {
   const theme: ThemeContext = React.useContext(ThemeContext);
-  const { url, foreground, background } = stackToImage[name];
+  const objImg: objectImgType | undefined = stackToImage[name];
+  const { url, foreground, background } = objImg
+    ? objImg
+    : { url: "", foreground: theme.background, background: theme.text.primary };
   const { Badge, StylizedBadge } = { ...styles };
 
   return isStylized ? (

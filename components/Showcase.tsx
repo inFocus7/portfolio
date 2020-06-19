@@ -39,9 +39,9 @@ const LinkB: FunctionComponent<LinkBType> = ({ data, title }) => {
     return spaceIndex == -1 ? title : title.substr(0, spaceIndex);
   };
 
-  const icon: objectImgType = stackToImage[titleToType(title)];
-
+  const icon: objectImgType | undefined = stackToImage[titleToType(title)];
   var dataArr: JSX.Element[] = [];
+
   // TODO Look into what '__typename' represents (fetched data from apollo/graphql)
   for (var k in data)
     if (data[k] && k != "__typename")
@@ -54,9 +54,10 @@ const LinkB: FunctionComponent<LinkBType> = ({ data, title }) => {
   return (
     <div>
       <LinkButton theme={theme}>
-        <div style={{ display: "flex", alignItems: "center" }}>
+
+        {icon && <div style={{ display: "flex", alignItems: "center" }}>
           <icon.icon fill={theme.text.secondary} width="35px" height="35px" />
-        </div>
+        </div>}
         <div
           style={{ display: "flex", alignItems: "center", marginLeft: "5px" }}
         >

@@ -66,10 +66,10 @@ import ntUrl, {
 import wUrl, {
   ReactComponent as Website,
 } from "../public/images/outIcos/icons8-website-35px.svg";
-import { objectImgType } from "../interfaces";
+import { objectImgType } from "../interfaces/index";
 // import {stackToImageType, companyToImageType, emojiMatcherType, objectImgType} from "../interfaces/index"
 
-export const companyToImage: {[key: string]: [string, React.FunctionComponent<React.SVGAttributes<SVGElement>>]} = {
+export const companyToImage: {[key: string]: [string, React.FunctionComponent<React.SVGAttributes<SVGElement>>] | undefined} = {
   GitHub: [ghUrl, GitHub],
   LinkedIn: [liUrl, LinkedIn],
   Email: [eUrl, Email],
@@ -94,7 +94,7 @@ const objectImg = (url: string, icon: React.FunctionComponent<React.SVGAttribute
   };
 };
 
-export const stackToImage: {[key: string]: objectImgType} = {
+export const stackToImage: {[key: string]: objectImgType | undefined} = {
   React: objectImg(rUrl, ReactIcon, "#61DBFB", "#020302"),
   "C++": objectImg(cUrl, Cpp, "#00599B", "#FFFFFF"),
   JavaScript: objectImg(jsUrl, JavaScript, "#F0DB4F", "#323330"),
@@ -117,7 +117,7 @@ export const stackToImage: {[key: string]: objectImgType} = {
   Website: objectImg(wUrl, Website, "", ""),
 };
 
-export const emojiMatcher: {[key: string]: string} = {
+export const emojiMatcher: {[key: string]: string | undefined} = {
   music: "🎵",
   movies: "🎥",
   tv: "📺",
