@@ -74,8 +74,8 @@ const Hero: FunctionComponent<HeroProps> = ({}) => {
           <Center>
             <HorizontalList data-aos="fade-up">
               {info.contacts && info.contacts.map((val) => {
-              const company = companyToImage[val.name];
-              const SvgComponent = company ? company[1] : null;
+              // Woah. Optional chaining '?.' is pretty awesome!
+              const SvgComponent = companyToImage[val.name]?.[1];
 
                 return (
                   <li key={val.name}>
