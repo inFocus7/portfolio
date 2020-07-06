@@ -3,6 +3,4 @@ export type AboutData = {
   stack: string[];
 };
 
-export type AboutProps = {
-  
-}
+export type AboutProps = {};

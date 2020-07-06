@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import {BadgeType, StylizedBadgeType} from "../../interfaces/index"
+import styled from "styled-components";
+import { BadgeType, StylizedBadgeType } from "../../interfaces/index";
 
 export const Badge = styled.div`
   background: rgba(231, 218, 223, 0.05);
@@ -14,7 +14,7 @@ export const Badge = styled.div`
   height: 5em;
   align-items: center;
   vertical-align: middle;
-  margin: .5em 1.0em .5em 0px;
+  margin: 0.5em 1em 0.5em 0px;
   position: relative;
 
   :hover {
@@ -46,9 +46,9 @@ export const Badge = styled.div`
     text-align: center;
     vertical-align: middle;
     margin-left: 2.5em;
-    padding-right: .35em;
+    padding-right: 0.35em;
   }
-`
+`;
 export const StylizedBadge = styled.div`
   /* Skewed Version
   transform: matrix(0.71, 0.41, -1.22, 0.71, 0, 0);
@@ -66,7 +66,7 @@ export const StylizedBadge = styled.div`
   height: 3.2em;
   align-items: center;
   vertical-align: middle;
-  margin: .4em .8em .5em 0px;
+  margin: 0.4em 0.8em 0.5em 0px;
   position: relative;
   background-color: ${(props: StylizedBadgeType) => props.background};
 
@@ -81,9 +81,9 @@ export const StylizedBadge = styled.div`
     float: right;
     text-align: center;
     vertical-align: middle;
-    padding-left: .3em;
-    padding-right: .3em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
   }
-`
+`;
 
-export default { Badge, StylizedBadge }
+export default { Badge, StylizedBadge };

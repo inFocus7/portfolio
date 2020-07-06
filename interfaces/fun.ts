@@ -4,6 +4,4 @@ export type FunData = {
   link?: string;
 };
 
-export type FunProps = {
-  
-}
+export type FunProps = {};

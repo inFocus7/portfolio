@@ -18,7 +18,7 @@ export type NavType = {
 };
 
 export type LinkBType = {
-  data: {[key: string]: string | undefined};
+  data: { [key: string]: string | undefined };
   title: string;
 };
 

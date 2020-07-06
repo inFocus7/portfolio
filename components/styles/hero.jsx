@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const HeroView = styled.div`
   display: table;
@@ -11,6 +11,6 @@ export const HeroView = styled.div`
     vertical-align: middle;
     display: table-cell;
   }
-`
+`;
 
-export default {HeroView}
+export default { HeroView };

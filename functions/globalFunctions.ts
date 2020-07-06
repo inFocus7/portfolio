@@ -40,7 +40,9 @@ import tsUrl, {
 import rdUrl, {
   ReactComponent as Redux,
 } from "../public/images/outIcos/redux.svg";
-import pUrl, { ReactComponent as PHP } from "../public/images/outIcos/php-1.svg";
+import pUrl, {
+  ReactComponent as PHP,
+} from "../public/images/outIcos/php-1.svg";
 import ftUrl, {
   ReactComponent as Flutter,
 } from "../public/images/outIcos/flutter-logo.svg";
@@ -69,7 +71,11 @@ import wUrl, {
 import { objectImgType } from "../interfaces/index";
 // import {stackToImageType, companyToImageType, emojiMatcherType, objectImgType} from "../interfaces/index"
 
-export const companyToImage: {[key: string]: [string, React.FunctionComponent<React.SVGAttributes<SVGElement>>] | undefined} = {
+export const companyToImage: {
+  [key: string]:
+    | [string, React.FunctionComponent<React.SVGAttributes<SVGElement>>]
+    | undefined;
+} = {
   GitHub: [ghUrl, GitHub],
   LinkedIn: [liUrl, LinkedIn],
   Email: [eUrl, Email],
@@ -85,7 +91,12 @@ export const companyToImage: {[key: string]: [string, React.FunctionComponent<Re
  * @param {string} foreground
  * @returns
  */
-const objectImg = (url: string, icon: React.FunctionComponent<React.SVGAttributes<SVGElement>>, background: string, foreground: string) => {
+const objectImg = (
+  url: string,
+  icon: React.FunctionComponent<React.SVGAttributes<SVGElement>>,
+  background: string,
+  foreground: string
+) => {
   return {
     url: url,
     icon: icon,
@@ -94,7 +105,7 @@ const objectImg = (url: string, icon: React.FunctionComponent<React.SVGAttribute
   };
 };
 
-export const stackToImage: {[key: string]: objectImgType | undefined} = {
+export const stackToImage: { [key: string]: objectImgType | undefined } = {
   React: objectImg(rUrl, ReactIcon, "#61DBFB", "#020302"),
   "C++": objectImg(cUrl, Cpp, "#00599B", "#FFFFFF"),
   JavaScript: objectImg(jsUrl, JavaScript, "#F0DB4F", "#323330"),
@@ -117,7 +128,7 @@ export const stackToImage: {[key: string]: objectImgType | undefined} = {
   Website: objectImg(wUrl, Website, "", ""),
 };
 
-export const emojiMatcher: {[key: string]: string | undefined} = {
+export const emojiMatcher: { [key: string]: string | undefined } = {
   music: "🎵",
   movies: "🎥",
   tv: "📺",

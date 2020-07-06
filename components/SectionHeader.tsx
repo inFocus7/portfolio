@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from "react"
-import styles from "./styles/section-header"
-import ThemeContext from "../context/theme-context"
-import Aos from "aos"
-import {SectionHeaderType} from "../interfaces/index"
+import React, { FunctionComponent } from "react";
+import styles from "./styles/section-header";
+import ThemeContext from "../context/theme-context";
+import Aos from "aos";
+import { SectionHeaderType } from "../interfaces/index";
 
 /**
  * Section headers.
@@ -13,16 +13,19 @@ import {SectionHeaderType} from "../interfaces/index"
  * @returns {FunctionComponent}
  * @author {Fabian Gonzalez}
  */
-const SectionHeader: FunctionComponent<SectionHeaderType> = ({ num, title }) => {
-  const theme: ThemeContext = React.useContext(ThemeContext)
-  const { Section, NumStyle, SectionStyle } = { ...styles }
+const SectionHeader: FunctionComponent<SectionHeaderType> = ({
+  num,
+  title,
+}) => {
+  const theme: ThemeContext = React.useContext(ThemeContext);
+  const { Section, NumStyle, SectionStyle } = { ...styles };
 
   React.useEffect(() => {
-    Aos.init({ duration: 500 })
+    Aos.init({ duration: 500 });
     // return () => {
     //   cleanup
     // }
-  }, [])
+  }, []);
 
   return (
     <Section data-aos="fade-right">
@@ -31,7 +34,7 @@ const SectionHeader: FunctionComponent<SectionHeaderType> = ({ num, title }) => 
         <SectionStyle theme={theme}>{title}</SectionStyle>
       </p>
     </Section>
-  )
-}
+  );
+};
 
-export default SectionHeader
+export default SectionHeader;

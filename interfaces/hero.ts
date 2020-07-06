@@ -8,6 +8,4 @@ export type HeroData = {
   }[];
 };
 
-export type HeroProps = {
-  
-}
+export type HeroProps = {};

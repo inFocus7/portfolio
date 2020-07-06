@@ -4,15 +4,14 @@ import { createGlobalStyle } from "styled-components";
 import Header from "../components/Header";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
-import {Stylized} from "../interfaces/index"
+import { Stylized } from "../interfaces/index";
+import Loading from "../components/sections/Loading";
 
 // TODO Add loading splash screen
 
 type Layout = {
   children: JSX.Element | JSX.Element[];
 };
-
-
 
 const client = new ApolloClient({
   uri: "https://intense-ravine-82013.herokuapp.com/api/graphql",
@@ -23,13 +22,13 @@ const GlobalStyle = createGlobalStyle`
   font-size: 7px;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 600px) {
   * {
     font-size: 8px;
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 670px) {
   * {
     font-size: 9px;
   }
@@ -142,29 +141,38 @@ a {
   }
 `;
 const Layout: FunctionComponent<Layout> = ({ children }) => {
+  const [loaded, setLoaded] = React.useState(false);
+
+  // TODO Load data in background and store @ context...
+
   return (
     <ApolloProvider client={client}>
       <ThemeContext.Consumer>
         {(value) => (
           <>
             <GlobalStyle theme={value} />
-
-            <div>
-              <Header />
-              <div
-                style={{
-                  margin: `0 auto`,
-                  maxWidth: 1200,
-                  padding: `0 1.0875rem 1.45rem`,
-                }}
-              >
-                <main>{children}</main>
-                <footer>
-                  © {new Date().getFullYear()}, Built with ❤️ by Fabian Gonzalez
-                  .
-                </footer>
+            {!loaded ? (
+              <div>
+                <Loading/>
               </div>
-            </div>
+            ) : (
+              <div>
+                <Header />
+                <div
+                  style={{
+                    margin: `0 auto`,
+                    maxWidth: 1200,
+                    padding: `0 1.0875rem 1.45rem`,
+                  }}
+                >
+                  <main>{children}</main>
+                  <footer>
+                    © {new Date().getFullYear()}, Built with ❤️ by Fabian
+                    Gonzalez .
+                  </footer>
+                </div>
+              </div>
+            )}
           </>
         )}
       </ThemeContext.Consumer>

@@ -1,7 +1,7 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const List = styled.ul`
-    list-style-type: none;
+  list-style-type: none;
 `;
 
-export default {List}
+export default { List };

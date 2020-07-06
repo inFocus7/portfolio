@@ -30,6 +30,4 @@ export type ProjectData = {
   };
 };
 
-export type ProjectProps = {
-  
-}
+export type ProjectProps = {};

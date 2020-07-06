@@ -20,7 +20,6 @@ const GET_FUN = gql`
 const Fun: FunctionComponent<FunProps> = ({}) => {
   const { loading, error, data } = useQuery(GET_FUN);
   const { List } = { ...styles };
-  //   var data: FunData[] = React.useContext(DataContext).facts;
 
   React.useEffect(() => {
     Aos.init({ duration: 750 });

@@ -11,6 +11,4 @@ export type WorkData = {
   stack: string[];
 };
 
-export type WorkProps = {
-  
-}
+export type WorkProps = {};

@@ -1,4 +1,4 @@
-import ThemeContext from "../context/theme-context"
+import ThemeContext from "../context/theme-context";
 
 export type SectionHeaderType = {
   num: number;
@@ -51,7 +51,7 @@ export type objectImgType = {
 
 export interface Stylized {
   theme: ThemeContext;
-};
+}
 
 export interface BadgeType extends Stylized {
   img: string;

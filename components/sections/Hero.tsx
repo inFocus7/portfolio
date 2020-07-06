@@ -5,29 +5,28 @@ import Aos from "aos";
 import Typical from "react-typical";
 import { Center, HorizontalList } from "../styles";
 import styles from "../styles/hero";
-import {HeroData, HeroProps} from "../../interfaces/hero"
-import gql from 'graphql-tag'
-import {useQuery} from "@apollo/react-hooks"
+import { HeroData, HeroProps } from "../../interfaces/hero";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
 
 const GET_MAIN = gql`
-{
-  main {
-    name
-    subtitle
-    titles
-    contacts {
+  {
+    main {
       name
-      link
+      subtitle
+      titles
+      contacts {
+        name
+        link
+      }
     }
   }
-}
 `;
 
 const Hero: FunctionComponent<HeroProps> = ({}) => {
   const { HeroView } = { ...styles };
-  // let info: HeroData = React.useContext(DataContext).main[0];
   const theme: ThemeContext = React.useContext(ThemeContext);
-    const {loading, error, data} = useQuery(GET_MAIN);
+  const { loading, error, data } = useQuery(GET_MAIN);
 
   React.useEffect(() => {
     Aos.init({ duration: 1000 });
@@ -73,26 +72,33 @@ const Hero: FunctionComponent<HeroProps> = ({}) => {
           </Center>
           <Center>
             <HorizontalList data-aos="fade-up">
-              {info.contacts && info.contacts.map((val) => {
-              // Woah. Optional chaining '?.' is pretty awesome!
-              const SvgComponent = companyToImage[val.name]?.[1];
+              {info.contacts &&
+                info.contacts.map((val) => {
+                  // Woah. Optional chaining '?.' is pretty awesome!
+                  const SvgComponent = companyToImage[val.name]?.[1];
 
-                return (
-                  <li key={val.name}>
-                    <a
-                      href={val.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {SvgComponent ? (<SvgComponent
-                        fill={theme.text.secondary}
-                        width="25px"
-                        height="55px"
-                      />) : (<h4 style={{fontSize: "1.6em"}}>{`<${val.name}>`}</h4>)}
-                    </a>
-                  </li>
-                );
-              })}
+                  return (
+                    <li key={val.name}>
+                      <a
+                        href={val.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {SvgComponent ? (
+                          <SvgComponent
+                            fill={theme.text.secondary}
+                            width="25px"
+                            height="55px"
+                          />
+                        ) : (
+                          <h4
+                            style={{ fontSize: "1.6em" }}
+                          >{`<${val.name}>`}</h4>
+                        )}
+                      </a>
+                    </li>
+                  );
+                })}
             </HorizontalList>
           </Center>
         </div>
