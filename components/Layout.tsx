@@ -6,6 +6,8 @@ import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { Stylized } from "../interfaces/index";
 import Loading from "../components/sections/Loading";
+import { LoadingContext, DataContext } from "../context/data-context";
+import { AnimatePresence, motion } from "framer-motion";
 
 // TODO Add loading splash screen
 
@@ -141,38 +143,55 @@ a {
   }
 `;
 const Layout: FunctionComponent<Layout> = ({ children }) => {
-  const [loaded, setLoaded] = React.useState(false);
-
-  // TODO Load data in background and store @ context...
+  const [loading, toggleLoading] = React.useState(true);
+  const [data, setData] = React.useState({
+    about: null,
+    fun: null,
+    main: null,
+    work: null,
+    projects: null,
+  });
 
   return (
     <ApolloProvider client={client}>
       <ThemeContext.Consumer>
-        {(value) => (
+        {(theme) => (
           <>
-            <GlobalStyle theme={value} />
-            {!loaded ? (
-              <div>
-                <Loading/>
-              </div>
-            ) : (
-              <div>
-                <Header />
-                <div
-                  style={{
-                    margin: `0 auto`,
-                    maxWidth: 1200,
-                    padding: `0 1.0875rem 1.45rem`,
-                  }}
-                >
-                  <main>{children}</main>
-                  <footer>
-                    © {new Date().getFullYear()}, Built with ❤️ by Fabian
-                    Gonzalez .
-                  </footer>
-                </div>
-              </div>
-            )}
+            <GlobalStyle theme={theme} />
+            <DataContext.Provider value={{ data: data, setData: setData }}>
+              <LoadingContext.Provider
+                value={{ loading: loading, toggleLoading: toggleLoading }}
+              >
+                {loading ? (
+                  <AnimatePresence>
+                    <motion.div exit={{ opacity: 0 }}>
+                      <Loading
+                        toggleLoading={toggleLoading}
+                        setData={setData}
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                ) : (
+                  <div>
+                    <Header />
+                    <div
+                      style={{
+                        margin: `0 auto`,
+                        maxWidth: 1200,
+                        padding: `0 1.0875rem 1.45rem`,
+                      }}
+                    >
+                      <main>{children}</main>
+                      <footer>
+                        © {new Date().getFullYear()}, Built with ❤️ by Fabian
+                        Gonzalez .
+                      </footer>
+                    </div>
+                  </div>
+                )}
+              </LoadingContext.Provider>
+            </DataContext.Provider>
+            )
           </>
         )}
       </ThemeContext.Consumer>

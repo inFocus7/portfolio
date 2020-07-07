@@ -5,28 +5,13 @@ import Aos from "aos";
 import Typical from "react-typical";
 import { Center, HorizontalList } from "../styles";
 import styles from "../styles/hero";
-import { HeroData, HeroProps } from "../../interfaces/hero";
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/react-hooks";
-
-const GET_MAIN = gql`
-  {
-    main {
-      name
-      subtitle
-      titles
-      contacts {
-        name
-        link
-      }
-    }
-  }
-`;
+import { HeroProps } from "../../interfaces/hero";
+import { DataContext } from "../../context/data-context";
 
 const Hero: FunctionComponent<HeroProps> = ({}) => {
   const { HeroView } = { ...styles };
   const theme: ThemeContext = React.useContext(ThemeContext);
-  const { loading, error, data } = useQuery(GET_MAIN);
+  const {main} = React.useContext(DataContext).data;
 
   React.useEffect(() => {
     Aos.init({ duration: 1000 });
@@ -35,13 +20,9 @@ const Hero: FunctionComponent<HeroProps> = ({}) => {
     // }
   }, []);
 
-  if (loading) return <h2>Loading Main Information...</h2>;
-  if (error) return <h2>{`Error! ${error.message}`}</h2>;
 
-  const info: HeroData = data.main;
-
-  let titleSteps: any[] = info.titles;
-  for (let i = 0; i < info.titles.length; i += 2) {
+  let titleSteps: any[] = main.titles;
+  for (let i = 0; i < main.titles.length; i += 2) {
     if (typeof titleSteps[i] == "string")
       titleSteps[i] = titleSteps[i].slice(
         0,
@@ -60,11 +41,11 @@ const Hero: FunctionComponent<HeroProps> = ({}) => {
               <p data-aos="fade-right" style={{ color: theme.accent.primary }}>
                 Hi! I'm
               </p>
-              <h1 data-aos="fade-left">{info.name}</h1>
+              <h1 data-aos="fade-left">{main.name}</h1>
             </span>
           </Center>
           <Center>
-            <h2>{info.subtitle}</h2>
+            <h2>{main.subtitle}</h2>
           </Center>
           <Center>
             <Typical steps={titleSteps} loop={Infinity} wrapper="h2" />
@@ -72,8 +53,8 @@ const Hero: FunctionComponent<HeroProps> = ({}) => {
           </Center>
           <Center>
             <HorizontalList data-aos="fade-up">
-              {info.contacts &&
-                info.contacts.map((val) => {
+              {main.contacts &&
+                main.contacts.map((val) => {
                   // Woah. Optional chaining '?.' is pretty awesome!
                   const SvgComponent = companyToImage[val.name]?.[1];
 

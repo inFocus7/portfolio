@@ -4,18 +4,8 @@ import StackDisplay from "../StackDisplay";
 import Aos from "aos";
 import { View } from "../styles";
 import styles from "../styles/about";
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/react-hooks";
 import { AboutProps, AboutData } from "../../interfaces/about";
-
-const GET_ABOUT = gql`
-  {
-    about {
-      content
-      stack
-    }
-  }
-`;
+import {DataContext} from "../../context/data-context";
 
 /**
  * The About section in the index page.
@@ -24,7 +14,7 @@ const GET_ABOUT = gql`
  */
 const About: FunctionComponent<AboutProps> = ({}) => {
   const { Content, Sub, StackGrid } = { ...styles };
-  const { loading, error, data } = useQuery(GET_ABOUT);
+  const {about} = React.useContext(DataContext).data;
 
   React.useEffect(() => {
     Aos.init({ duration: 750 });
@@ -34,15 +24,11 @@ const About: FunctionComponent<AboutProps> = ({}) => {
     // }
   }, []);
 
-  if (loading) return <h2>Loading About...</h2>;
-  if (error) return <h2>{`Error! ${error.message}`}</h2>;
-
-  const info: AboutData = data.about;
   return (
     <section id="about">
       <View data-aos="fade">
         <SectionHeader num={0} title="About Me" />
-        {info.content.map((val, i) => {
+        {about.content.map((val, i) => {
           return (
             <Content data-aos="fade-up" key={`about-${i + 1}`}>
               {val}
@@ -51,7 +37,7 @@ const About: FunctionComponent<AboutProps> = ({}) => {
         })}
         <Sub data-aos="fade-up">Current Stack</Sub>
         <StackGrid>
-          {info.stack.map((val, i) => {
+          {about.stack.map((val, i) => {
             return (
               <div
                 data-aos="fade-up"

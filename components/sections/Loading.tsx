@@ -3,9 +3,99 @@ import { LoadingData } from "../../interfaces/loading";
 import { Center } from "../styles";
 import { motion } from "framer-motion";
 import ThemeContext from "../../context/theme-context";
+import {useQuery} from "@apollo/react-hooks";
+import gql from "graphql-tag"
 
-const Loading: FunctionComponent<LoadingData> = ({}) => {
+const GET_ALL = gql`
+{
+  about {
+    content
+    stack
+  }
+  facts {
+    category
+    content
+    link
+  }
+  main {
+    name
+    subtitle
+    titles
+    contacts {
+      name
+      link
+    }
+  }
+  projects {
+    name
+    description
+    role
+    content
+    links {
+      figma {
+        web
+        mobile
+        desktop
+      }
+      notion {
+        workboard
+      }
+      github {
+        backend
+        frontend
+      }
+      website {
+        link
+      }
+    }
+    stack
+    date {
+      start
+      end
+    }
+    progress
+    place
+    isMajor
+  }
+  work {
+    company
+    position
+    location
+    description
+    points
+    date {
+      start
+      end
+    }
+    stack
+  }
+}
+`
+
+// TODO: Query seperately for better error handling?
+const Loading: FunctionComponent<LoadingData> = ({toggleLoading, setData}) => {
   const theme: ThemeContext = React.useContext(ThemeContext);
+  const {loading, error, data} = useQuery(GET_ALL);
+  const [timePassed, setTimePassed] = React.useState(false);
+  // When query finishes && ~2-5 seconds pass, set loading to false
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      setTimePassed(true);
+    }, 1500)
+    // Load Data. Once done (if not errors) toggle loading
+    if(error) {
+      // TODO
+    }
+    else if(!loading && timePassed) {
+      console.log(data);
+      setData(data);
+      toggleLoading(false);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [loading, timePassed])
 
   const iconBackground = {
     hidden: {
@@ -27,7 +117,7 @@ const Loading: FunctionComponent<LoadingData> = ({}) => {
       fill: theme.background,
       fillOpacity: 0,
       stroke: theme.background,
-      strokeWidth: 0,
+      strokeWidth: 1,
       pathLength: 0,
     },
     visible: {
@@ -40,7 +130,7 @@ const Loading: FunctionComponent<LoadingData> = ({}) => {
   };
 
   return (
-    <div
+    <motion.div
       style={{
         width: "100%",
         height: "100vh",
@@ -69,8 +159,8 @@ const Loading: FunctionComponent<LoadingData> = ({}) => {
                 initial="hidden"
                 animate="visible"
                 transition={{
-                  default: { duration: 1, ease: "easeInOut" },
-                  fill: { duration: 1, ease: [1, 0, 0.8, 1] },
+                  default: { duration: .6, ease: "easeInOut" },
+                  fill: { duration: .6, ease: [1, 0, 0.8, 1] },
                 }}
               />
               {/* TODO Look into if changing path manally (V42 -> V64) messes with anything... */}
@@ -80,9 +170,9 @@ const Loading: FunctionComponent<LoadingData> = ({}) => {
                 initial="hidden"
                 animate="visible"
                 transition={{
-                  delay: 1,
-                  default: { duration: 1, ease: "easeInOut" },
-                  fill: { duration: 1, ease: [1, 0, 0.8, 1] },
+                  delay: .6,
+                  default: { duration: .5, ease: "easeInOut" },
+                  fill: { duration: .5, ease: [1, 0, 0.8, 1] },
                 }}
               />
             </motion.svg>
@@ -107,7 +197,7 @@ const Loading: FunctionComponent<LoadingData> = ({}) => {
           <h2>Welcome to my portfolio!</h2>
         </motion.div>
       </Center>
-    </div>
+    </motion.div>
   );
 };
 
