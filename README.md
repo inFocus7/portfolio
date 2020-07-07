@@ -6,8 +6,7 @@
 
 ## TODO
 
-* Better loading view. (animation vs. splash screen) ⏲
-* Make switching projects faster. (Or at least have `isLoading` in between switches to provide feedback)
+* Improve project/work navigation speeds.
 * Add and Improve Accessibility features.
 * Modify for mobile displays. 📱
 * Look into SEOs for SPAs 🤓
@@ -18,3 +17,8 @@
   * Remove some 3rd party components.
     * Manual `react-typical` implementation.
 * `<span>` some aos-ed components to not mess with page width. (ex. `StylizedBadge`) 👻
+
+## DONE
+
+* Better custom loading screen.
+* Edit experence/showcase to be scrollable instead of wraparound.

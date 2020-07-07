@@ -4,7 +4,7 @@ import StackDisplay from "../StackDisplay";
 import Aos from "aos";
 import { View } from "../styles";
 import styles from "../styles/about";
-import { AboutProps, AboutData } from "../../interfaces/about";
+import { AboutProps } from "../../interfaces/about";
 import {DataContext} from "../../context/data-context";
 
 /**
@@ -28,13 +28,15 @@ const About: FunctionComponent<AboutProps> = ({}) => {
     <section id="about">
       <View data-aos="fade">
         <SectionHeader num={0} title="About Me" />
+        <div data-aos="fade">
         {about.content.map((val, i) => {
           return (
-            <Content data-aos="fade-up" key={`about-${i + 1}`}>
+            <Content key={`about-${i + 1}`}>
               {val}
             </Content>
           );
         })}
+        </div>
         <Sub data-aos="fade-up">Current Stack</Sub>
         <StackGrid>
           {about.stack.map((val, i) => {

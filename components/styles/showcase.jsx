@@ -14,17 +14,12 @@ export const Item = styled.button`
   cursor: pointer;
 `;
 
-export const Line = styled.div`
-  width: 100px;
-  height: 3px;
-  background-color: ${(props) => props.theme.text.primary};
-  transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-`;
-
+// TODO "If overflow, give hint that theres an overflow.."
 export const HorizontalNavList = styled.nav`
+  white-space: nowrap;
+  overflow-x: auto;
+  width: 90vw;
+
   button {
     font-size: 100%;
     font-family: inherit;
@@ -34,48 +29,6 @@ export const HorizontalNavList = styled.nav`
 
     :focus {
       border-color: ${(props) => props.theme.shades.primary};
-    }
-
-    /* TODO loop nth-child based on how many children in the nav... */
-    /* TODO on selected move line & change width */
-
-    :nth-child(1):hover ~ .line {
-      transform: translate(0px);
-      -moz-transform: translate(0px);
-      -webkit-transform: translate(0px);
-      -o-transform: translate(0px);
-      -ms-transform: translate(0px);
-      width: 120px;
-      transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out;
-      -webkit-transition: all 0.3s ease-in-out;
-    }
-
-    :nth-child(2):hover ~ .line {
-      transform: translate(220px);
-      width: 120px;
-      -moz-transform: translate(100px);
-      -webkit-transform: translate(100px);
-      -o-transform: translate(100px);
-      -ms-transform: translate(100px);
-      transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out;
-      -webkit-transition: all 0.3s ease-in-out;
-    }
-
-    :nth-child(3):hover ~ .line {
-      transform: translate(320px);
-      width: 120px;
-      -moz-transform: translate(200px);
-      -webkit-transform: translate(200px);
-      -o-transform: translate(200px);
-      -ms-transform: translate(200px);
-      transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out;
-      -webkit-transition: all 0.3s ease-in-out;
     }
   }
 `;
@@ -115,7 +68,6 @@ export default {
   SelectedContent,
   UnselectedContent,
   Item,
-  Line,
   HorizontalNavList,
   LinkButton,
   LinkA,

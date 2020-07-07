@@ -148,7 +148,7 @@ const Loading: FunctionComponent<LoadingData> = ({toggleLoading, setData}) => {
             transition={{ duration: 1.5, loop: Infinity }}
           >
             <motion.svg
-              width="max(10vw,100px)"
+              width="max(9vw,100px)"
               viewBox="0 0 47 47"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

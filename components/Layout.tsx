@@ -162,33 +162,33 @@ const Layout: FunctionComponent<Layout> = ({ children }) => {
               <LoadingContext.Provider
                 value={{ loading: loading, toggleLoading: toggleLoading }}
               >
-                {loading ? (
-                  <AnimatePresence>
-                    <motion.div exit={{ opacity: 0 }}>
+                <AnimatePresence exitBeforeEnter>
+                  {loading ? (
+                    <motion.div exit={{opacity: 0}} transition={{duration: 0.2}} key="outer-loading-scren">
                       <Loading
                         toggleLoading={toggleLoading}
                         setData={setData}
                       />
                     </motion.div>
-                  </AnimatePresence>
-                ) : (
-                  <div>
-                    <Header />
-                    <div
-                      style={{
-                        margin: `0 auto`,
-                        maxWidth: 1200,
-                        padding: `0 1.0875rem 1.45rem`,
-                      }}
-                    >
-                      <main>{children}</main>
-                      <footer>
-                        © {new Date().getFullYear()}, Built with ❤️ by Fabian
-                        Gonzalez .
-                      </footer>
+                  ) : (
+                    <div>
+                      <Header />
+                      <div
+                        style={{
+                          margin: `0 auto`,
+                          maxWidth: 1200,
+                          padding: `0 1.0875rem 1.45rem`,
+                        }}
+                      >
+                        <main>{children}</main>
+                        <footer>
+                          © {new Date().getFullYear()}, Made with ❤️ by Fabian
+                          Gonzalez .
+                        </footer>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </AnimatePresence>
               </LoadingContext.Provider>
             </DataContext.Provider>
             )
