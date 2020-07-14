@@ -3,90 +3,92 @@ import { LoadingData } from "../../interfaces/loading";
 import { Center } from "../styles";
 import { motion } from "framer-motion";
 import ThemeContext from "../../context/theme-context";
-import {useQuery} from "@apollo/react-hooks";
-import gql from "graphql-tag"
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
+// How would seperating + running concurrently work? Faster, maybe? 🤔
 const GET_ALL = gql`
-{
-  about {
-    content
-    stack
-  }
-  facts {
-    category
-    content
-    link
-  }
-  main {
-    name
-    subtitle
-    titles
-    contacts {
-      name
+  {
+    about {
+      content
+      stack
+    }
+    facts {
+      category
+      content
       link
     }
-  }
-  projects {
-    name
-    description
-    role
-    content
-    links {
-      figma {
-        web
-        mobile
-        desktop
-      }
-      notion {
-        workboard
-      }
-      github {
-        backend
-        frontend
-      }
-      website {
+    main {
+      name
+      subtitle
+      titles
+      contacts {
+        name
         link
       }
     }
-    stack
-    date {
-      start
-      end
+    projects {
+      name
+      description
+      role
+      content
+      links {
+        figma {
+          web
+          mobile
+          desktop
+        }
+        notion {
+          workboard
+        }
+        github {
+          backend
+          frontend
+        }
+        website {
+          link
+        }
+      }
+      stack
+      date {
+        start
+        end
+      }
+      progress
+      place
+      isMajor
     }
-    progress
-    place
-    isMajor
-  }
-  work {
-    company
-    position
-    location
-    description
-    points
-    date {
-      start
-      end
+    work {
+      company
+      position
+      location
+      description
+      points
+      date {
+        start
+        end
+      }
+      stack
     }
-    stack
   }
-}
-`
+`;
 
-// TODO: Query seperately for better error handling?
-const Loading: FunctionComponent<LoadingData> = ({toggleLoading, setData}) => {
+const Loading: FunctionComponent<LoadingData> = ({
+  toggleLoading,
+  setData,
+}) => {
   const theme: ThemeContext = React.useContext(ThemeContext);
-  const {loading, error, data} = useQuery(GET_ALL);
+  const { loading, error, data } = useQuery(GET_ALL);
   const [timePassed, setTimePassed] = React.useState(false);
   // When query finishes && ~2-5 seconds pass, set loading to false
   React.useEffect(() => {
     const timeout = setTimeout(() => {
       setTimePassed(true);
-    }, 1500)
+    }, 1500);
     // Load Data. Once done (if not errors) toggle loading
-    if(error) {
+    if (error) {
       // TODO
-    }
-    else if(!loading && timePassed) {
+    } else if (!loading && timePassed) {
       console.log(data);
       setData(data);
       toggleLoading(false);
@@ -95,7 +97,7 @@ const Loading: FunctionComponent<LoadingData> = ({toggleLoading, setData}) => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [loading, timePassed])
+  }, [loading, timePassed]);
 
   const iconBackground = {
     hidden: {
@@ -159,20 +161,19 @@ const Loading: FunctionComponent<LoadingData> = ({toggleLoading, setData}) => {
                 initial="hidden"
                 animate="visible"
                 transition={{
-                  default: { duration: .6, ease: "easeInOut" },
-                  fill: { duration: .6, ease: [1, 0, 0.8, 1] },
+                  default: { duration: 0.6, ease: "easeInOut" },
+                  fill: { duration: 0.6, ease: [1, 0, 0.8, 1] },
                 }}
               />
-              {/* TODO Look into if changing path manally (V42 -> V64) messes with anything... */}
               <motion.path
                 d="M30.872 18.69V21.872H20.771V28.976H30.058V32.121H20.771V65H16.812V18.69H30.872Z"
                 variants={iconForeground}
                 initial="hidden"
                 animate="visible"
                 transition={{
-                  delay: .6,
-                  default: { duration: .5, ease: "easeInOut" },
-                  fill: { duration: .5, ease: [1, 0, 0.8, 1] },
+                  delay: 0.6,
+                  default: { duration: 0.5, ease: "easeInOut" },
+                  fill: { duration: 0.5, ease: [1, 0, 0.8, 1] },
                 }}
               />
             </motion.svg>

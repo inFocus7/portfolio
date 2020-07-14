@@ -26,25 +26,25 @@ const GlobalStyle = createGlobalStyle`
 
 @media (min-width: 600px) {
   * {
-    font-size: 8px;
+    font-size: 7px;
   }
 }
 
 @media (min-width: 670px) {
   * {
-    font-size: 9px;
+    font-size: 8px;
   }
 }
 
 @media (min-width: 900px) {
   * {
-    font-size: 10px;
+    font-size: 9px;
   }
 }
 
 @media (min-width: 1200px) {
   * {
-    font-size: 11px;
+    font-size: 10px;
   }
 }
 
@@ -158,13 +158,18 @@ const Layout: FunctionComponent<Layout> = ({ children }) => {
         {(theme) => (
           <>
             <GlobalStyle theme={theme} />
+
             <DataContext.Provider value={{ data: data, setData: setData }}>
               <LoadingContext.Provider
                 value={{ loading: loading, toggleLoading: toggleLoading }}
               >
                 <AnimatePresence exitBeforeEnter>
                   {loading ? (
-                    <motion.div exit={{opacity: 0}} transition={{duration: 0.2}} key="outer-loading-scren">
+                    <motion.div
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      key="loading-scren"
+                    >
                       <Loading
                         toggleLoading={toggleLoading}
                         setData={setData}
@@ -176,14 +181,14 @@ const Layout: FunctionComponent<Layout> = ({ children }) => {
                       <div
                         style={{
                           margin: `0 auto`,
-                          maxWidth: 1200,
+                          maxWidth: "1200px",
                           padding: `0 1.0875rem 1.45rem`,
                         }}
                       >
                         <main>{children}</main>
                         <footer>
                           © {new Date().getFullYear()}, Made with ❤️ by Fabian
-                          Gonzalez .
+                          Gonzalez.
                         </footer>
                       </div>
                     </div>
@@ -191,7 +196,6 @@ const Layout: FunctionComponent<Layout> = ({ children }) => {
                 </AnimatePresence>
               </LoadingContext.Provider>
             </DataContext.Provider>
-            )
           </>
         )}
       </ThemeContext.Consumer>

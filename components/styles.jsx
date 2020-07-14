@@ -24,6 +24,7 @@ export const HorizontalList = styled.ul`
 
 export const View = styled.div`
   width: 100%;
+  /* max-width: 1200px; */
   height: calc(100vh - 60px); /* 60px of header size! */
   padding: 0px;
   vertical-align: middle;

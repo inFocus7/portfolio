@@ -6,7 +6,7 @@ import { WorkProps } from "../../interfaces/work";
 import { DataContext } from "../../context/data-context";
 
 const Work: FunctionComponent<WorkProps> = ({}) => {
-  const {work} = React.useContext(DataContext).data;
+  const { work } = React.useContext(DataContext).data;
 
   return (
     <section id="work">

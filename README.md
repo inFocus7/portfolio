@@ -7,6 +7,7 @@
 ## TODO
 
 * Improve project/work navigation speeds.
+* Fix height calculations when updating vh.
 * Add and Improve Accessibility features.
 * Modify for mobile displays. 📱
 * Look into SEOs for SPAs 🤓

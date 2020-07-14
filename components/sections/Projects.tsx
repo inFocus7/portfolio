@@ -6,10 +6,10 @@ import { ProjectProps } from "../../interfaces/project";
 import { DataContext } from "../../context/data-context";
 
 const Projects: FunctionComponent<ProjectProps> = ({}) => {
-  const {projects} = React.useContext(DataContext).data;
+  const { projects } = React.useContext(DataContext).data;
 
   return (
-    <section id="projects">
+    <section id="projects" style={{tableLayout: "fixed"}}>
       <View>
         <SectionHeader num={2} title="Projects" />
         <ShowcaseProjects info={projects} />

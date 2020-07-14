@@ -11,7 +11,7 @@ import { DataContext } from "../../context/data-context";
 const Hero: FunctionComponent<HeroProps> = ({}) => {
   const { HeroView } = { ...styles };
   const theme: ThemeContext = React.useContext(ThemeContext);
-  const {main} = React.useContext(DataContext).data;
+  const { main } = React.useContext(DataContext).data;
 
   React.useEffect(() => {
     Aos.init({ duration: 1000 });
@@ -19,7 +19,6 @@ const Hero: FunctionComponent<HeroProps> = ({}) => {
     //   cleanup
     // }
   }, []);
-
 
   let titleSteps: any[] = main.titles;
   for (let i = 0; i < main.titles.length; i += 2) {

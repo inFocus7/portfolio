@@ -14,11 +14,10 @@ export const Item = styled.button`
   cursor: pointer;
 `;
 
-// TODO "If overflow, give hint that theres an overflow.."
 export const HorizontalNavList = styled.nav`
   white-space: nowrap;
   overflow-x: auto;
-  width: 90vw;
+  width: 100%;
 
   button {
     font-size: 100%;

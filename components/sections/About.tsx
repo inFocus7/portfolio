@@ -5,7 +5,7 @@ import Aos from "aos";
 import { View } from "../styles";
 import styles from "../styles/about";
 import { AboutProps } from "../../interfaces/about";
-import {DataContext} from "../../context/data-context";
+import { DataContext } from "../../context/data-context";
 
 /**
  * The About section in the index page.
@@ -14,7 +14,7 @@ import {DataContext} from "../../context/data-context";
  */
 const About: FunctionComponent<AboutProps> = ({}) => {
   const { Content, Sub, StackGrid } = { ...styles };
-  const {about} = React.useContext(DataContext).data;
+  const { about } = React.useContext(DataContext).data;
 
   React.useEffect(() => {
     Aos.init({ duration: 750 });
@@ -29,13 +29,9 @@ const About: FunctionComponent<AboutProps> = ({}) => {
       <View data-aos="fade">
         <SectionHeader num={0} title="About Me" />
         <div data-aos="fade">
-        {about.content.map((val, i) => {
-          return (
-            <Content key={`about-${i + 1}`}>
-              {val}
-            </Content>
-          );
-        })}
+          {about.content.map((val, i) => {
+            return <Content key={`about-${i + 1}`}>{val}</Content>;
+          })}
         </div>
         <Sub data-aos="fade-up">Current Stack</Sub>
         <StackGrid>

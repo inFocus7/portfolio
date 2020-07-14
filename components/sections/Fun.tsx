@@ -8,7 +8,7 @@ import { FunProps } from "../../interfaces/fun";
 import { DataContext } from "../../context/data-context";
 
 const Fun: FunctionComponent<FunProps> = ({}) => {
-  const {facts} = React.useContext(DataContext).data;
+  const { facts } = React.useContext(DataContext).data;
   const { List } = { ...styles };
 
   React.useEffect(() => {
@@ -22,12 +22,12 @@ const Fun: FunctionComponent<FunProps> = ({}) => {
     <section id="fun">
       <View>
         <SectionHeader num={3} title="Fun Facts" />
-        <List>
+        <List data-aos="fade-up">
           {facts.map((fact, i) => {
             let emoji = emojiMatcher[fact.category];
             if (!emoji) emoji = "";
             return (
-              <ListItem key={`funfact-${i + 1}`} data-aos="fade-up">
+              <ListItem key={`funfact-${i + 1}`}>
                 <p>{`${emoji} ${fact.content} ${emoji}`}</p>
               </ListItem>
             );
