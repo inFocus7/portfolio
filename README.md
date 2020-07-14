@@ -13,7 +13,7 @@
 * Look into SEOs for SPAs 🤓
 * Design it with more "fun"! 😄
 * Add blog posts section. 📄
-* Decrease First Load JS (**226 kB** as of 6.18.2020) 🐌
+* Decrease First Load JS (**252 kB** as of 7.13.2020) 🐌
   * SVGs: Remove, minimize, or host online.
   * Remove some 3rd party components.
     * Manual `react-typical` implementation.

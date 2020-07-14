@@ -14,7 +14,7 @@ import { DataContext } from "../../context/data-context";
  */
 const About: FunctionComponent<AboutProps> = ({}) => {
   const { Content, Sub, StackGrid } = { ...styles };
-  const { about } = React.useContext(DataContext).data;
+  const about = React.useContext(DataContext).data?.about;
 
   React.useEffect(() => {
     Aos.init({ duration: 750 });
@@ -24,32 +24,36 @@ const About: FunctionComponent<AboutProps> = ({}) => {
     // }
   }, []);
 
-  return (
-    <section id="about">
-      <View data-aos="fade">
-        <SectionHeader num={0} title="About Me" />
-        <div data-aos="fade">
-          {about.content.map((val, i) => {
-            return <Content key={`about-${i + 1}`}>{val}</Content>;
-          })}
-        </div>
-        <Sub data-aos="fade-up">Current Stack</Sub>
-        <StackGrid>
-          {about.stack.map((val, i) => {
-            return (
-              <div
-                data-aos="fade-up"
-                data-aos-delay={i * 100}
-                key={`about-stack-${val}`}
-              >
-                <StackDisplay name={val} />
-              </div>
-            );
-          })}
-        </StackGrid>
-      </View>
-    </section>
-  );
+  if (about) {
+    return (
+      <section id="about">
+        <View data-aos="fade">
+          <SectionHeader num={0} title="About Me" />
+          <div data-aos="fade">
+            {about.content.map((val, i) => {
+              return <Content key={`about-${i + 1}`}>{val}</Content>;
+            })}
+          </div>
+          <Sub data-aos="fade-up">Current Stack</Sub>
+          <StackGrid>
+            {about.stack.map((val, i) => {
+              return (
+                <div
+                  data-aos="fade-up"
+                  data-aos-delay={i * 100}
+                  key={`about-stack-${val}`}
+                >
+                  <StackDisplay name={val} />
+                </div>
+              );
+            })}
+          </StackGrid>
+        </View>
+      </section>
+    );
+  }
+
+  return <></>;
 };
 
 export default About;

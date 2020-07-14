@@ -144,13 +144,7 @@ a {
 `;
 const Layout: FunctionComponent<Layout> = ({ children }) => {
   const [loading, toggleLoading] = React.useState(true);
-  const [data, setData] = React.useState({
-    about: null,
-    fun: null,
-    main: null,
-    work: null,
-    projects: null,
-  });
+  const [data, setData] = React.useState({});
 
   return (
     <ApolloProvider client={client}>
