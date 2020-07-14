@@ -80,16 +80,15 @@ const Loading: FunctionComponent<LoadingData> = ({
   const theme: ThemeContext = React.useContext(ThemeContext);
   const { loading, error, data } = useQuery(GET_ALL);
   const [timePassed, setTimePassed] = React.useState(false);
-  // When query finishes && ~2-5 seconds pass, set loading to false
+
   React.useEffect(() => {
     const timeout = setTimeout(() => {
       setTimePassed(true);
-    }, 1500);
-    // Load Data. Once done (if not errors) toggle loading
+    }, 500);
+
     if (error) {
       // TODO
     } else if (!loading && timePassed) {
-      console.log(data);
       setData(data);
       toggleLoading(false);
     }
@@ -132,7 +131,7 @@ const Loading: FunctionComponent<LoadingData> = ({
   };
 
   return (
-    <motion.div
+    <div
       style={{
         width: "100%",
         height: "100vh",
@@ -143,11 +142,11 @@ const Loading: FunctionComponent<LoadingData> = ({
       <Center>
         <motion.div
           animate={{ scale: [0, 1.06, 1] }}
-          transition={{ duration: 1 }}
+          transition={{ duration: .6 }}
         >
           <motion.div
             animate={{ y: [0, 5, 0, -5, 0] }}
-            transition={{ duration: 1.5, loop: Infinity }}
+            transition={{ duration: 1.0, loop: Infinity }}
           >
             <motion.svg
               width="max(9vw,100px)"
@@ -161,8 +160,8 @@ const Loading: FunctionComponent<LoadingData> = ({
                 initial="hidden"
                 animate="visible"
                 transition={{
-                  default: { duration: 0.6, ease: "easeInOut" },
-                  fill: { duration: 0.6, ease: [1, 0, 0.8, 1] },
+                  default: { duration: 0.4, ease: "easeInOut" },
+                  fill: { duration: 0.4, ease: [1, 0, 0.8, 1] },
                 }}
               />
               <motion.path
@@ -171,9 +170,9 @@ const Loading: FunctionComponent<LoadingData> = ({
                 initial="hidden"
                 animate="visible"
                 transition={{
-                  delay: 0.6,
-                  default: { duration: 0.5, ease: "easeInOut" },
-                  fill: { duration: 0.5, ease: [1, 0, 0.8, 1] },
+                  delay: 0.4,
+                  default: { duration: 0.3, ease: "easeInOut" },
+                  fill: { duration: 0.3, ease: [1, 0, 0.8, 1] },
                 }}
               />
             </motion.svg>
@@ -193,12 +192,7 @@ const Loading: FunctionComponent<LoadingData> = ({
           </h4>
         </motion.div>
       </Center>
-      <Center>
-        <motion.div drag>
-          <h2>Welcome to my portfolio!</h2>
-        </motion.div>
-      </Center>
-    </motion.div>
+    </div>
   );
 };
 
