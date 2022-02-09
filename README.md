@@ -1,6 +1,6 @@
-# Portfolio 👀
+# Portfolio 👀 (older version)
 
-#### [fabianswe.com](https://www.fabianswe.com)
+#### [fabianswe.com](https://www.fabianswe.com) (now hosting v3 using Go + gRPC. private codebase)
 
  My portfolio's front end utilizing [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), [React](http://reactjs.org/), and [Apollo](http://apollographql.com/) Client. It makes query calls to my backend [GraphQL](http://graphql.org/) API to display information.
 
